@@ -17,10 +17,9 @@
 }
 
 .text-editor-content {
-    background-color: brown;
+    background-color: #ffff;
     flex: 0.88; 
-    padding: 10px; 
+    padding: 20px; 
     display: flex;
-    align-items: center; 
-    justify-content: center; 
+    /* align-items: center;  */
 }

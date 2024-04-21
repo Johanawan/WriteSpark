@@ -9,6 +9,7 @@ import "./App.css";
 
 function App() {
   const [message, setMessage] = useState();
+  const [blogContent, setBlogContent] = useState("");
 
   useEffect(() => {
     axios
@@ -26,8 +27,8 @@ function App() {
     <div className="app">
       <NavBar />
       <div className="app-body">
-        <Form />
-        <TextEditor />
+        <Form setBlogContent={setBlogContent}/>
+        <TextEditor blogContent={blogContent}/>
       </div>
     </div>
   );
