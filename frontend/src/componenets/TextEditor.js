@@ -5,10 +5,10 @@ import { useState } from "react";
 
 function TextEditor({ blogContent }) {
   const [content, setContent] = useState("");
-  console.log(blogContent)
+  // console.log(blogContent)
   return (
     <div className="text-editor-container">
-      <ReactQuill className="text-editor-input" value={content}theme="snow" />
+      <ReactQuill className="text-editor-input" value={blogContent} theme="snow" />
     
     </div>
   );
