@@ -1,25 +1,13 @@
 .text-editor-container {
     display: flex;
     flex-direction: column; 
-    background-color: lightblue;
+    background-color: rgb(35, 134, 167);
     flex: 0.75; 
     margin: 16px 16px 16px 8px;
     height: auto; 
 }
 
-.text-editor {
-    background-color: rgb(243, 54, 196);
-    flex: 0.12;
-    padding: 10px; 
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-}
-
-.text-editor-content {
-    background-color: #ffff;
-    flex: 0.88; 
-    padding: 20px; 
-    display: flex;
-    /* align-items: center;  */
+.text-editor-input{
+    height: 100%;
+    overflow: auto;
 }

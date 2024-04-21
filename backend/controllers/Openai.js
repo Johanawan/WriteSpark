@@ -30,16 +30,12 @@ console.log("Ruuning function")
     });
     console.log(response.choices[0].message.content);
     if (response) {
-        console.log("1")
       if (response.choices[0].message.content) {
-        console.log("2")
         // return res.status(200).json(response.data.choices[0].message.content);
         return res.status(200).json(response.choices[0].message.content);
       }
-      console.log("3")
     }
   } catch (err) {
     return res.status(404).json({ message: err.message });
   }
-  console.log("5")
 };
