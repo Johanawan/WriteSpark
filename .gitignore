@@ -7,3 +7,6 @@
 
 # Optional for React app
 frontend/build/
+
+# sECRETS
+backend/.env
