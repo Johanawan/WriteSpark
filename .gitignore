@@ -1,0 +1,9 @@
+# Ignore node_modules in backend and frontend
+/backend/node_modules/
+/frontend/node_modules/
+
+# Optional for MacOS users
+.DS_Store
+
+# Optional for React app
+frontend/build/

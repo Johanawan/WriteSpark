@@ -1,0 +1,32 @@
+.app {
+  height: 100vh;
+  background-color: red;
+  display: flex; /* Using flex to better manage inner contents */
+  flex-direction: column; /* Aligns children in a column */
+}
+
+.app-body {
+  margin: 16px;
+  flex: 1;
+  background-color: blue;
+  display: flex; 
+}
+
+.app-form-container {
+    background-color: pink;
+    flex: 0.25; /* Takes up 30% of the space */
+    height: auto; /* Adjust height as per your requirement or design */
+    margin: 16px 8px 16px 16px;
+    /* padding: 15px; */
+    display: flex;
+  }
+  
+  .app-text-editor-container {
+    background-color: lightblue;
+    flex: 0.75; 
+    height: auto; 
+    margin: 16px 16px 16px 8px;
+    display: inline-block;
+    flex-direction: column;
+
+  }
