@@ -36,6 +36,7 @@ function Form({setBlogContent}) {
 
   return (
     <form onSubmit={handleSubmit} className="form">
+      <h2>Generate a blog</h2>
       <div className="form-group">
         <label className="form-label">
           Blog Length:

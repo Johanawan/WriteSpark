@@ -6,10 +6,13 @@ import Form from "./componenets/Form";
 import TextEditor from "./componenets/TextEditor";
 
 import "./App.css";
+import Landing from "./Landing";
 
 function App() {
   const [message, setMessage] = useState();
   const [blogContent, setBlogContent] = useState("");
+
+  const state = true;
 
   useEffect(() => {
     axios
@@ -23,12 +26,20 @@ function App() {
       });
   }, []);
 
+  // I want to create
+
   return (
     <div className="app">
       <NavBar />
       <div className="app-body">
-        <Form setBlogContent={setBlogContent}/>
-        <TextEditor blogContent={blogContent}/>
+        {state ? (
+          <Landing />
+        ) : (
+          <>
+            <Form setBlogContent={setBlogContent} />
+            <TextEditor blogContent={blogContent} />
+          </>
+        )}
       </div>
     </div>
   );

@@ -3,8 +3,10 @@
   flex-direction: column;
   gap: 15px;
   background-color: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
+  border-color: #7c7b78;
+  border-style: solid;
+  padding: 10px 20px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   flex: 0.25;
@@ -28,7 +30,7 @@
 }
 
 .form button {
-  background-color: #428dde;
+  background-color: rgb(147, 147, 250);
   width: 100%;
   color: white;
   padding: 10px 15px;
@@ -41,7 +43,7 @@
 }
 
 .form button:hover {
-  background-color: #0056b3;
+  background-color: rgb(119, 119, 224);
 }
 
 .form textarea {

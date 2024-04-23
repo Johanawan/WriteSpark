@@ -1,13 +1,21 @@
 .text-editor-container {
     display: flex;
     flex-direction: column; 
-    background-color: rgb(35, 134, 167);
+    background-color: rgb(247, 247, 247);
     flex: 0.75; 
     margin: 16px 16px 16px 8px;
     height: auto; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* position: fixed; */
 }
 
 .text-editor-input{
     height: 100%;
     overflow: auto;
+    border-style: solid;
+    border-color: #7c7b78;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
