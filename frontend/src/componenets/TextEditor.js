@@ -1,12 +1,15 @@
-import "./TextEditor.css"
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import "./TextEditor.css";
+import { useState } from "react";
 
-function TextEditor() {
+function TextEditor({ blogContent }) {
+  const [content, setContent] = useState("");
+  // console.log(blogContent)
   return (
     <div className="text-editor-container">
-      <div className="text-editor">
-      </div>  
-      <div className="text-editor-content">
-      </div>
+      <ReactQuill className="text-editor-input" value={blogContent} theme="snow" />
+    
     </div>
   );
 }
