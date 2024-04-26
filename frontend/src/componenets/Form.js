@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import axios, { AxiosError } from "axios";
 import "./Form.css";
 
-const config = {
-  headers: { "Content-Type": "application/json" },
-};
+
 
 function Form({setBlogContent}) {
   const [formData, setFormData] = useState({
@@ -14,8 +12,15 @@ function Form({setBlogContent}) {
     keyPoints: "",
   });
 
+  // Config snippet for API call
+  const config = {
+    headers: { "Content-Type": "application/json" },
+    data: formData
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log({name, value})
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -27,7 +32,9 @@ function Form({setBlogContent}) {
     console.log("Form Data Submitted:", formData);
     // Add code here to handle the form submission, e.g., send data to a server
     try {
+      console.log("API CALL")
       const { data } = await axios.post("http://localhost:5000/api/openai/generate-blog", config);
+      console.log(data)
       setBlogContent(data)
     } catch (err) {
       console.error(err);
