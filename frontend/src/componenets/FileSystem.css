@@ -1,7 +1,7 @@
 .file-system-container {
-    padding: 20px;
-    display: flex;
-    flex-direction: column; 
+    /* padding: 20px; */
+    /* display: flex;
+    flex-direction: column;  */
     background-color: rgb(247, 247, 247);
     flex: 0.75; 
     margin: 16px 16px 16px 8px;
@@ -12,3 +12,53 @@
     border-color: #7c7b78;
     /* position: fixed; */
 }
+
+.file-system-header {
+    padding: 10px;
+    border-bottom: 1px solid;
+}
+
+.file-system-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .file-system-table th, .file-system-table td {
+    border: none;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .file-system-table th {
+    background-color: #f2f2f2;
+    
+  }
+
+  .file-system-table tr:not(:last-child) {
+    box-shadow: inset 0 -1px 0 #e0e0e0; /* Soft line for row separation */
+  }
+
+  .text {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .add-icon {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+
+  button {
+    margin-right: 5px;
+    padding: 8px 16px;
+    background-color: rgb(147, 147, 250);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: rgb(123, 123, 255);
+  }
+
