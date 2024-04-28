@@ -3,7 +3,7 @@ import axios from "axios";
 
 import NavBar from "./componenets/NavBar";
 import Form from "./componenets/Form";
-import TextEditor from "./componenets/TextEditor";
+// import TextEditor from "./componenets/TextEditor";
 import FileSystem from "./componenets/FileSystem";
 
 import "./App.css";
@@ -15,17 +15,17 @@ function App() {
 
   const state = false;
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/message")
-      .then((response) => {
-        // console.log('Data received:', response.data.message);
-        setMessage(response.data.message);
-      })
-      .catch((error) => {
-        console.error("There was an error!", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:5000/message")
+  //     .then((response) => {
+  //       // console.log('Data received:', response.data.message);
+  //       setMessage(response.data.message);
+  //     })
+  //     .catch((error) => {
+  //       console.error("There was an error!", error);
+  //     });
+  // }, []);
 
   // I want to create
 
@@ -38,8 +38,8 @@ function App() {
         ) : (
           <>
             <Form setBlogContent={setBlogContent} />
-            <TextEditor blogContent={blogContent} />
-            {/* <FileSystem /> */}
+            {/* <TextEditor blogContent={blogContent} /> */}
+            <FileSystem />
           </>
         )}
       </div>
