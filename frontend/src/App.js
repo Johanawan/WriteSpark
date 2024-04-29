@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import NavBar from "./componenets/NavBar";
 import Form from "./componenets/Form";
-// import TextEditor from "./componenets/TextEditor";
-import FileSystem from "./componenets/FileSystem";
+import TextEditor from "./componenets/TextEditor";
+import FileSystem from "./pages/BlogOverview";
 
 import "./App.css";
-import Landing from "./Landing";
+import Landing from "./pages/Landing";
 
 function App() {
   const [message, setMessage] = useState();
   const [blogContent, setBlogContent] = useState("");
-
-  const state = false;
 
   // useEffect(() => {
   //   axios
@@ -27,24 +26,20 @@ function App() {
   //     });
   // }, []);
 
-  // I want to create
-
-  return (
-    <div className="app">
-      <NavBar />
-      <div className="app-body">
-        {state ? (
-          <Landing />
-        ) : (
-          <>
-            <Form setBlogContent={setBlogContent} />
-            {/* <TextEditor blogContent={blogContent} /> */}
-            <FileSystem />
-          </>
-        )}
+  return(
+    <Router>
+      <div className="app">
+        <NavBar />
+        <div className="app-body">
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/create" element={<FileSystem />} />
+            <Route path="/edit/:blogId" element={<TextEditor />} />
+          </Routes>
+        </div>
       </div>
-    </div>
-  );
+    </Router>
+  ); 
 }
 
 export default App;

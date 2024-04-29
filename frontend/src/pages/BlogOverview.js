@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import "./FileSystem.css";
+import "./BlogOverview.css";
 
-import ConfirmModal from "./ConfirmationModal";
+import Form from "../componenets/Form";
+import ConfirmModal from "../componenets/ConfirmationModal";
+
 import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -101,63 +104,71 @@ function FileSystem() {
   };
 
   return (
-    <div className="file-system-container">
-      <ConfirmModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        onConfirm={handleConfirmDelete}
-        blogName={
-          blogList.find((blog) => blog.id === currentBlogId)?.name || ""
-        }
-      />
-      <div className="file-system-header">
-        <button onClick={handleAddBlogClick}>
-          <FontAwesomeIcon icon="fa-solid fa-plus" className="add-icon" />
-          <span className="text">Create Blog</span>
-        </button>
-      </div>
-      <div className="file-system-table">
-        <table>
-          <thead>
-            <tr>
-              <th>
-                <input
-                  type="checkbox"
-                  onChange={() => handleMasterCheckboxChange}
-                  checked={selectedFiles.length === usersBlogs.length}
-                />
-              </th>
-              <th>Name</th>
-              <th>Words</th>
-              <th>Last Updated</th>
-            </tr>
-          </thead>
-          <tbody>
-            {blogList.map((blog) => (
-              <tr key={blog.id}>
-                <td>
+    <>
+      <Form />
+      <div className="file-system-container">
+        <ConfirmModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          onConfirm={handleConfirmDelete}
+          blogName={
+            blogList.find((blog) => blog.id === currentBlogId)?.name || ""
+          }
+        />
+        <div className="file-system-header">
+          <button onClick={handleAddBlogClick}>
+            <FontAwesomeIcon icon="fa-solid fa-plus" className="add-icon" />
+            <span className="text">Create Blog</span>
+          </button>
+        </div>
+        <div className="file-system-table">
+          <table>
+            <thead>
+              <tr>
+                <th>
                   <input
                     type="checkbox"
-                    checked={selectedFiles.includes(blog.id)}
-                    onChange={() => handleCheckboxChange(blog.id)}
+                    onChange={() => handleMasterCheckboxChange}
+                    checked={selectedFiles.length === usersBlogs.length}
                   />
-                </td>
-                <td>{blog.name}</td>
-                <td>{blog.words}</td>
-                <td>{blog.lastUpdated}</td>
-                <td>
-                  <FontAwesomeIcon
-                    onClick={() => handleDeleteBlogClick(blog.id)}
-                    cursor="pointer"
-                    icon="fa-solid fa-trash"
-                  />
-                </td>
+                </th>
+                <th>Name</th>
+                <th>Words</th>
+                <th>Last Updated</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {blogList.map((blog) => (
+                <tr key={blog.id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedFiles.includes(blog.id)}
+                      onChange={() => handleCheckboxChange(blog.id)}
+                    />
+                  </td>
+                  <td className="blog-name">
+                    
+                    <Link to={`/edit/${blog.id}`} className="link">
+                      {blog.name}
+                    </Link>
+                  </td>
+                  <td>{blog.words}</td>
+                  <td>{blog.lastUpdated}</td>
+                  <td>
+                    <FontAwesomeIcon
+                      onClick={() => handleDeleteBlogClick(blog.id)}
+                      cursor="pointer"
+                      icon="fa-solid fa-trash"
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
