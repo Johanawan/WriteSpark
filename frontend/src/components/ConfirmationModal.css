@@ -1,0 +1,46 @@
+.modal-content h2 {
+  color: #333;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.modal-content p {
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 20px; /* Add some space before the buttons */
+  color: #555;
+}
+
+.modal-content button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px; /* Spacing between buttons */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for visual feedback */
+}
+
+.modal-content button:hover {
+  opacity: 0.8;
+}
+
+/* Specific styles for the action buttons */
+.modal-content button:first-of-type {
+  background-color: #d9534f; /* Bootstrap's `btn-danger` color for delete */
+  color: white;
+}
+
+.modal-content button:last-of-type {
+  background-color: #f0f0f0; /* Light grey for cancel */
+  color: #333;
+}
+
+/* This ensures that buttons are centered and laid out horizontally */
+.modal-content div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

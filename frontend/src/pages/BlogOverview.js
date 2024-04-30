@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./BlogOverview.css";
 
-import Form from "../componenets/Form";
-import ConfirmModal from "../componenets/ConfirmationModal";
-
+import Form from "../components/Form";
+import ConfirmModal from "../components/ConfirmationModal";
+import NewBlogModal from "../components/NewBlogModal";
+import TextEditor from "../components/TextEditor";
 import { v4 as uuidv4 } from "uuid";
-import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -33,46 +33,62 @@ function FileSystem() {
   ];
 
   const [blogList, setBlogList] = useState(usersBlogs);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentBlogId, setCurrentBlogId] = useState(null);
+  const [isTextEditorVisible, setIsTextEditorVisible] = useState(false);
+  const [currentBlog, setCurrentBlog] = useState(null);  
+
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [isNewBlogModalOpen, setIsNewBlogModalOpen] = useState(false);
+
+  // Handlers
+  const handleBlogClick = (blog) => {
+    setCurrentBlog(blog);
+    setIsTextEditorVisible(true);
+  };
 
   // Helper function to generate a unique blog name
   const generateUniqueName = (baseName) => {
     let newName = baseName;
     let counter = 1;
-
     // Check if the name already exists in the list
     while (blogList.some((blog) => blog.name === newName)) {
       newName = `${baseName} ${counter++}`;
     }
-
     return newName;
   };
 
-  // Example usage: Add a blog with a button click
   const handleAddBlogClick = () => {
+    setIsNewBlogModalOpen(true); // Open the New Blog modal
+  };
+
+  const handleCreateNewBlog = (blogName) => {
     const baseName = "New Blog";
-    const uniqueName = generateUniqueName(baseName);
-    // New blog details
+    // Generate a unique name based on the input or default to "New Blog" if empty
+    const finalName = blogName.trim() ? blogName : generateUniqueName(baseName);
+
     const newBlog = {
       id: uuidv4(),
-      name: uniqueName,
-      items: 1,
-      words: 0,
-      lastUpdated: new Date().toISOString().split("T")[0], // Current date in YYYY-MM-DD format
+      name: finalName,
+      words: 0, // Initialize with zero words
+      lastUpdated: new Date().toISOString().split("T")[0],
     };
 
     setBlogList((currentBlogs) => [...currentBlogs, newBlog]);
+    setIsNewBlogModalOpen(false); // Close the modal after adding the blog
+  };
+
+  const handleCloseNewBlogModal = () => {
+    setIsNewBlogModalOpen(false);
   };
 
   // Function to handle delete blog
   const handleDeleteBlogClick = (id) => {
     setCurrentBlogId(id);
-    setIsModalOpen(true);
+    setIsConfirmModalOpen(true); // Corrected to use the right state variable
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setIsConfirmModalOpen(false); // Ensure this uses the right state variable
     setCurrentBlogId(null);
   };
 
@@ -103,17 +119,31 @@ function FileSystem() {
     }
   };
 
+  if (isTextEditorVisible && currentBlog) {
+    return <TextEditor blog={currentBlog} onBack={() => setIsTextEditorVisible(false)} />;
+  }
+
   return (
     <>
       <Form />
       <div className="file-system-container">
         <ConfirmModal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          onConfirm={handleConfirmDelete}
+          isOpen={isConfirmModalOpen}
+          onClose={() => setIsConfirmModalOpen(false)}
+          onConfirm={() => {
+            setBlogList((blogs) =>
+              blogs.filter((blog) => blog.id !== currentBlogId)
+            );
+            setIsConfirmModalOpen(false);
+          }}
           blogName={
             blogList.find((blog) => blog.id === currentBlogId)?.name || ""
           }
+        />
+        <NewBlogModal
+          isOpen={isNewBlogModalOpen}
+          onClose={handleCloseNewBlogModal}
+          onConfirm={handleCreateNewBlog}
         />
         <div className="file-system-header">
           <button onClick={handleAddBlogClick}>
@@ -147,11 +177,11 @@ function FileSystem() {
                       onChange={() => handleCheckboxChange(blog.id)}
                     />
                   </td>
-                  <td className="blog-name">
-                    
-                    <Link to={`/edit/${blog.id}`} className="link">
-                      {blog.name}
-                    </Link>
+                  <td
+                    className="blog-name"
+                    onClick={() => handleBlogClick(blog)}
+                  >
+                    {blog.name}
                   </td>
                   <td>{blog.words}</td>
                   <td>{blog.lastUpdated}</td>
