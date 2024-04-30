@@ -27,7 +27,7 @@ function TextEditor({ blogContent, blog, onBack  }) {
           </button>
 
           {/* Blog name should go here */}
-          <span>{blog.name}</span>
+          <span className="text-editor-blog-name">{blog.name}</span>
         </div>
 
         <ReactQuill
