@@ -17,7 +17,6 @@ function NewBlogModal({ isOpen, onClose, onConfirm }) {
       <div className="modal-content">
         <form onSubmit={handleSubmit}>
           <h2>Create A New Blog</h2>
-          <label htmlFor="blogName">Blog Name:</label>
           <input
             type="text"
             id="blogName"
